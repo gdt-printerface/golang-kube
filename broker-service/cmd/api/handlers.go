@@ -7,6 +7,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"log"
 	"net/http"
 	"net/rpc"
 	"time"
@@ -251,6 +252,7 @@ type RPCPayload struct {
 func (app *Config) logItemViaRPC(w http.ResponseWriter, l LogPayload) {
 	client, err := rpc.Dial("tcp", "logger-service:5001")
 	if err != nil {
+		log.Println("kaput")
 		app.errorJSON(w, err)
 		return
 	}
@@ -263,6 +265,7 @@ func (app *Config) logItemViaRPC(w http.ResponseWriter, l LogPayload) {
 	var result string
 	err = client.Call("RPCServer.LogInfo", rpcPayload, &result)
 	if err != nil {
+		log.Println("kaput when running")
 		app.errorJSON(w, err)
 		return
 	}

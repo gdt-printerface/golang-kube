@@ -62,7 +62,7 @@ services:
       replicas: 1
 
   postgres:
-    image: 'postgres:14.0'
+    image: 'postgres:14'
     ports:
       - "5432:5432"
     restart: always
@@ -77,7 +77,7 @@ services:
       - ./db-data/postgres/:/var/lib/postgresql/data/
 
   mongo:
-    image: 'mongo:4.2.16-bionic'
+    image: 'mongo:6'
     ports:
       - "27017:27017"
     environment:
@@ -94,7 +94,7 @@ services:
       - "8025:8025"
       
   rabbitmq:
-    image: 'rabbitmq:3.9-alpine'
+    image: 'rabbitmq:3.10-alpine'
     ports:
       - "5672:5672"
     deploy:
