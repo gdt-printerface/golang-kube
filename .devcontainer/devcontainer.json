@@ -19,10 +19,11 @@
 			"helm": "3.11",
 			"minikube": "1.29"
 		}
-	}
+	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	"forwardPorts": [8080],
+	"postStartCommand": "minikube start"
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "uname -a",

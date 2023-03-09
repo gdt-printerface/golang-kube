@@ -11,7 +11,7 @@ import (
 )
 
 type Consumer struct {
-	conn *amqp.Connection
+	conn      *amqp.Connection
 	queueName string
 }
 
@@ -92,17 +92,12 @@ func (consumer *Consumer) Listen(topics []string) error {
 func handlePayload(payload Payload) {
 	switch payload.Name {
 	case "log", "event":
-		// log whatever we get
 		err := logEvent(payload)
 		if err != nil {
 			log.Println(err)
 		}
 
 	case "auth":
-		// authenticate
-
-	// you can have as many cases as you want, as long as you write the logic
-
 	default:
 		err := logEvent(payload)
 		if err != nil {
@@ -134,6 +129,6 @@ func logEvent(entry Payload) error {
 	if response.StatusCode != http.StatusAccepted {
 		return err
 	}
-	
+
 	return nil
 }
